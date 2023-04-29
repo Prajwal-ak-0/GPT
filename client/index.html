@@ -8,9 +8,25 @@
     <title>GPT</title>
   </head>
   <body>
-    <div id="app">
-      <div id="chat_container"></div>
+    <section class=" bg-[#202123] h-[100vh] w-[364px] ">
+      <button class="bg-[#343541] w-[270px] buton hover:border-neutral-100">
+        <span class="text-[18px] pr-7">
+          +
+        </span> 
+        New Chat
+      </button>
+      <span class="pl-3 text-[14px] text-neutral-400">Your Activity </span>
+      <ul >
 
+      </ul>
+    </section>
+
+    <div id="app">
+      <div id="chat_container">
+        <div id="welcome-back" class="fade-in items-center text-center h-[80px] ml-[150px] pt-[20px]">
+          Welcome back!
+        </div>
+      </div>
       <form>
         <textarea name="prompt" cols="1" rows="1" placeholder="Ask Something..."></textarea>
         <button type="submit"><img src="assets/send.svg" /></button>

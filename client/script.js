@@ -3,6 +3,19 @@ import user from "./assets/user.svg"
 
 const form=document.querySelector('form');
 const chatContainer=document.querySelector('#chat_container');
+const changeInput=(value)=>{
+  const inputElement=document.querySelector('textarea');
+  inputElement.value=value;
+}
+const historyElement=document.querySelector('ul');
+const buttonElement=document.querySelector('.buton')
+const welcomeBack = document.getElementById('welcome-back');
+setTimeout(() => {
+  welcomeBack.classList.add('fade-out');
+  setTimeout(() => {
+    welcomeBack.remove();
+  }, 1000); // wait for 1 second after fade-out animation
+}, 2000); // wait for 2 seconds before fade-out animation
 
 let loadInterval;
 
@@ -15,7 +28,7 @@ function loader(element){
     if(element.textContent==='....'){
       element.textContent='';
     }
-  },300);
+  },30000);
 };
 
 function typeText(element,text){
@@ -77,7 +90,7 @@ const handleSubmit=async (e)=>{
 
   //fetching the data from server
 
-  const response=await fetch('https://gpt-81sf.onrender.com',{
+  const response=await fetch('http://localhost:8080/',{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
@@ -86,6 +99,11 @@ const handleSubmit=async (e)=>{
       prompt:data.get('prompt')
     })
   })
+  const pElement=document.createElement('li');
+  pElement.textContent=data.get('prompt');
+  pElement.addEventListener('click',()=>changeInput(pElement.textContent));
+  historyElement.append((pElement));
+
   clearInterval(loadInterval);
   messageDiv.innerHTML='';
 
@@ -108,3 +126,5 @@ form.addEventListener('keyup',(e)=>{
     handleSubmit(e);
   }
 })
+
+buttonElement.addEventListener('click',()=>window.location.reload())
