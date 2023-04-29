@@ -90,7 +90,7 @@ const handleSubmit=async (e)=>{
 
   //fetching the data from server
 
-  const response=await fetch('http://localhost:8080/',{
+  const response=await fetch('https://gpt-81sf.onrender.com/',{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
